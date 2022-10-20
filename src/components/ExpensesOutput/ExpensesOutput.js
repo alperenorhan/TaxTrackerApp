@@ -5,74 +5,19 @@ import { GlobalStyles } from "../../constants/styles";
 import ExpensesSummary from "./ExpensesSummary";
 import ExpensesList from "./ExpensesList";
 
-const DUMMY_EXPENSES = [
-  {
-    id: "e1",
-    description: "A pair of shoes",
-    amount: 59.99,
-    date: new Date("2021-12-19"),
-  },
-  {
-    id: "e2",
-    description: "A pair of trousers",
-    amount: 69.99,
-    date: new Date("2021-12-30"),
-  },
-  {
-    id: "e3",
-    description: "A pair of bananas",
-    amount: 5.99,
-    date: new Date("2021-12-25"),
-  },
-  {
-    id: "e4",
-    description: "A book",
-    amount: 5.99,
-    date: new Date("2022-05-20"),
-  },
-  {
-    id: "e5",
-    description: "A book",
-    amount: 59.99,
-    date: new Date("2021-12-19"),
-  },
-  {
-    id: "e6",
-    description: "A pair of shoes",
-    amount: 59.99,
-    date: new Date("2021-12-19"),
-  },
-  {
-    id: "e7",
-    description: "A pair of trousers",
-    amount: 69.99,
-    date: new Date("2021-12-30"),
-  },
-  {
-    id: "e8",
-    description: "A pair of bananas",
-    amount: 5.99,
-    date: new Date("2021-12-25"),
-  },
-  {
-    id: "e9",
-    description: "A book",
-    amount: 5.99,
-    date: new Date("2022-01-12"),
-  },
-  {
-    id: "e10",
-    description: "Another book",
-    amount: 10.99,
-    date: new Date("2022-04-03"),
-  },
-];
-
-export default function ExpensesOutput({ expenses, expensesPeriod }) {
+export default function ExpensesOutput({
+  expenses,
+  expensesPeriod,
+  fallBackTest,
+}) {
+  let content = <Text style={styles.infoText}>{fallBackTest}</Text>;
+  if (expenses.length > 0) {
+    content = <ExpensesList expenses={expenses} />;
+  }
   return (
     <View style={styles.container}>
-      <ExpensesSummary expenses={DUMMY_EXPENSES} periodName={expensesPeriod} />
-      <ExpensesList expenses={DUMMY_EXPENSES} />
+      <ExpensesSummary expenses={expenses} periodName={expensesPeriod} />
+      {content}
     </View>
   );
 }
@@ -85,4 +30,10 @@ const styles = StyleSheet.create({
     paddingBottom: 0,
     backgroundColor: GlobalStyles.colors.primary700,
   },
-})
+  infoText: {
+    color: "#fff",
+    fontSize: 16,
+    textAlign: "center",
+    marginTop: 32,
+  },
+});
