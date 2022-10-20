@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const firebaseUrl =
-  "https://react-native-course-beda2-default-rtdb.firebaseio.com";
+  "";
 
 export async function storeExpense(expenseData) {
   const response = await axios.post(
