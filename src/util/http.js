@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const firebaseUrl = " ";
+const firebaseUrl = "";
 
 export async function storeExpense(expenseData) {
   const response = await axios.post(
